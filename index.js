@@ -15,16 +15,24 @@
 
         let repoArray = await axios.get(userUrl)
             .then(response => {
-               let repos = response.data.map(it => it.name)
+               var repos = response.data.map(it => it.name)
             console.log(repos) 
 
-            for (let i = 0; i < repos.length; i+=1) {
-                // let repoUrl = `https://api.github.com/repos/${username}/${repos[i]}/git/trees/master?recursive=1`
+            for (let i = 0; i < 2; i+=1) {
+                let repoUrl = `https://api.github.com/repos/${username}/${repos[i]}/git/trees/master?recursive=1`
                     axios.get(repoUrl)
                     .then(response => {
-                     let pathName = response.data.map(it => it.tree)
+                     let dataArray = response.data //response.data
+
+                    //  for(let k = 0; k < dataArray.length; k++){
+                    //     let mappedPath = dataArray.map(it => it.path)
+                    //     if(mappedPath === '//regulartd'){
+                    //         return dataArray[k] //and go to the objects url
+                    //     }
+                    //  }
                      
-                    console.log(response.data.map(it => it.tree)) 
+                     
+                    console.log(dataArray) 
                 })
             }
     })
