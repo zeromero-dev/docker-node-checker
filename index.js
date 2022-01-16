@@ -12,21 +12,25 @@
         const username = 'ovasylenko'
         let userUrl = `https://api.github.com/users/${username}/repos`
         const regex = /[a-zA-Z].Dockerfile/g
+        const fileName = '.Dockerfile'
+        const searchingString = 'node:'
 
         let repoArray = await axios.get(userUrl)
             .then(response => {
                var repos = response.data.map(it => it.name)
             console.log(repos) 
-
+                //https://api.github.com/search/code?q=${searchingString}+in:file+filename:${fileName}+repo:${username}/${repos[i]}
             for (let i = 0; i < 1; i+=1) { //change 2 to repos.length
-                let repoUrl = `https://api.github.com/repos/${username}/${repos[i]}/git/trees/master?recursive=1`
-                    axios.get(repoUrl)
+                // let repoUrl = `https://api.github.com/repos/${username}/${repos[i]}/git/trees/master?recursive=1`
+                    let filteredFiles = `https://api.github.com/search/code?q=${searchingString}+in:file+filename:${fileName}+repo:${username}/skillcrucial-react-redux-boilerplate` //change to ${repos[i]}
+                    axios.get(filteredFiles)
                     .then(response => {
-                     let dataArray = response.data //response.data
-                     let dataTree = dataArray.tree
-                     let filteredFolder = dataTree.filter((it) => {
-                         return it.path === 'docker'
-                     })
+                     let dataArray = response.data.items//response.data
+                     let mappedFile = dataArray.filter(it => it.url)
+                    //  let dataTree = dataArray.tree
+                    //  let filteredFolder = dataTree.filter((it) => {
+                    //      return it.path === 'docker'
+                    //  })
                     //  let dockerTree = filteredFolder.tree
                     //  let fileTree = dockerTree.filter(it => {
                     //      return (it.path).match(regex)
@@ -47,7 +51,7 @@
                     //  }
                      
                      
-                    console.log(dataTree) 
+                    console.log(mappedFile) 
                 })
             }
     })
