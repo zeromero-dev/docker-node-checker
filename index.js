@@ -26,7 +26,23 @@
                     axios.get(filteredFiles)
                     .then(response => {
                      let dataArray = response.data.items//response.data
-                     let mappedFile = dataArray.filter(it => it.url)
+                     let mappedFile = dataArray.map(it => (it.url))
+                    //  console.log(mappedFile)
+                        let mappedString = mappedFile.join(', ')
+                     console.log(mappedString) 
+
+                    //  axios.get(mappedString)
+                    //  .then(response =>{
+                    //      let fileProperties = response.data
+                    //      let encryptedData = fileProperties.map(it => it.content)
+                    //     console.log(encryptedData) 
+                         
+                    //     //  let decoder = atob(encryptedData)
+                    //      // reecnrypt data
+                          
+
+                    //  })
+                    //  /////////////////
                     //  let dataTree = dataArray.tree
                     //  let filteredFolder = dataTree.filter((it) => {
                     //      return it.path === 'docker'
@@ -36,22 +52,7 @@
                     //      return (it.path).match(regex)
                     //  })
 
-                    //  let mappedPath = dataTree.map(it => it.path)
-                    //     let filtered =  mappedPath.filter((current, index, array) => {
-                    //        mappedPath === ''
-                    //     })
-
-
-                    //  for(let k = 0; k < dataTree.length; k++){
-                    //     let acc = []
-                    //     let mappedPath = dataTree.map(it => it.path)
-                    //     if(mappedPath === '//regulartd'){
-                    //         dataTree[k] += acc //and go to the objects url
-                    //     }
-                    //  }
-                     
-                     
-                    console.log(mappedFile) 
+                    
                 })
             }
     })
