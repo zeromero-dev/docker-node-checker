@@ -1,4 +1,5 @@
     const axios = require('axios');
+    const fs = require('fs');
     // const request = require('request');
 
     
@@ -33,10 +34,12 @@
                          axios.get(mappedFile[k])
                          .then(response => {
                             let content =  response.data.content
-                            let buff = new Buffer(content, 'base64');
-                            let docoded = buff.toString('ascii')
-                            console.log(docoded)
-                            
+                            let buff = Buffer.from(content, 'base64');
+                            let decoded = buff.toString('ascii')
+                           console.log(decoded)
+                           let firstLine = decoded.split('\n')[0]; // change to working thing
+                           console.log(firstLine)
+                        //    fs.writeFileSync('/tmp/test-sync', firstLine);
                          })
                      
                          
