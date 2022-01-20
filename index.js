@@ -27,9 +27,22 @@
                     .then(response => {
                      let dataArray = response.data.items//response.data
                      let mappedFile = dataArray.map(it => (it.url))
-                    //  console.log(mappedFile)
-                        let mappedString = mappedFile.join(', ')
-                     console.log(mappedString) 
+                     console.log(mappedFile)
+
+                     for(let k = 0; k < mappedFile.length ;k++){
+                         axios.get(mappedFile[k])
+                         .then(response => {
+                            let content =  response.data.content
+                            let buff = new Buffer(content, 'base64');
+                            let docoded = buff.toString('ascii')
+                            console.log(docoded)
+                            
+                         })
+                     
+                         
+                     }
+                        // let mappedString = mappedFile.join(', ')
+                      
 
                     //  axios.get(mappedString)
                     //  .then(response =>{
