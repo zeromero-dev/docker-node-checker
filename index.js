@@ -12,7 +12,7 @@
     (async () => {
         const username = 'ovasylenko'
         let userUrl = `https://api.github.com/users/${username}/repos`
-        const regex = /[a-zA-Z].Dockerfile/g
+        const regex = /FROM\s+node\:\w+/gm
         const fileName = '.Dockerfile'
         const searchingString = 'node:'
 
@@ -36,10 +36,20 @@
                             let content =  response.data.content
                             let buff = Buffer.from(content, 'base64');
                             let decoded = buff.toString('ascii')
-                           console.log(decoded)
-                           let firstLine = decoded.split('\n')[0]; // change to working thing
-                           console.log(firstLine)
-                        //    fs.writeFileSync('/tmp/test-sync', firstLine);
+                        //    console.log(decoded)
+                           let resultArr = decoded.match(regex)
+                           let result = resultArr.join(' ')
+                           console.log(result)
+                           let writeToFile = fs.appendFile('./results/results.txt', result, (err) => {
+                            console.log("ERROR: ", err)
+                          })
+                          console.log(writeToFile)
+                        //    try{
+                        //     let writeSync = fs.writeFileSync('./results/results.txt', result);
+                        //    } catch (err) { 
+                        //     console.log(err)
+                        //    }
+                           
                          })
                      
                          
@@ -75,21 +85,5 @@
     .catch(err => {
         console.log(err);
     })
-
-    // function firstLineChecker(){
-    //     for(let i = 0; i < ;i++)
-    // }
-
-
-    function b64_to_utf8( str ) {
-        return decodeURIComponent(escape(window.atob( str )));
-      }
-
-    })()
-    // //2. get all files in repo
-
-    // axios.get(`https://api.github.com/repos/${username}/[REPO]/git/trees/master?recursive=1`).then(response => {
-
-    // }).catch(err => {
-    //     console.log(err);
-    // })
+})()
+    
