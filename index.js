@@ -1,13 +1,5 @@
     const axios = require('axios');
     const fs = require('fs');
-    // const request = require('request');
-
-    
-
-    // request(userUrl), { json: true }, (err, res, body) => {
-    //     if(err) { return console.log(err) }
-    // }
-    // console.log()
    
     (async () => {
         const username = 'ovasylenko'
@@ -38,47 +30,13 @@
                             let decoded = buff.toString('ascii')
                         //    console.log(decoded)
                            let resultArr = decoded.match(regex)
-                           let result = resultArr.join(' ')
+                           let result = resultArr.join(' \n') //+ ${repos[i]}
                            console.log(result)
                            let writeToFile = fs.appendFile('./results/results.txt', result, (err) => {
                             console.log("ERROR: ", err)
                           })
-                          console.log(writeToFile)
-                        //    try{
-                        //     let writeSync = fs.writeFileSync('./results/results.txt', result);
-                        //    } catch (err) { 
-                        //     console.log(err)
-                        //    }
-                           
-                         })
-                     
-                         
+                         }) 
                      }
-                        // let mappedString = mappedFile.join(', ')
-                      
-
-                    //  axios.get(mappedString)
-                    //  .then(response =>{
-                    //      let fileProperties = response.data
-                    //      let encryptedData = fileProperties.map(it => it.content)
-                    //     console.log(encryptedData) 
-                         
-                    //     //  let decoder = atob(encryptedData)
-                    //      // reecnrypt data
-                          
-
-                    //  })
-                    //  /////////////////
-                    //  let dataTree = dataArray.tree
-                    //  let filteredFolder = dataTree.filter((it) => {
-                    //      return it.path === 'docker'
-                    //  })
-                    //  let dockerTree = filteredFolder.tree
-                    //  let fileTree = dockerTree.filter(it => {
-                    //      return (it.path).match(regex)
-                    //  })
-
-                    
                 })
             }
     })
