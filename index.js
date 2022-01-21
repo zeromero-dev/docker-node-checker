@@ -30,7 +30,7 @@
                             let decoded = buff.toString('ascii')
                         //    console.log(decoded)
                            let resultArr = decoded.match(regex)
-                           let result = resultArr.join(' \n') //+ ${repos[i]}
+                           let result = resultArr.join(' \n') + `${repos[i]}`
                            console.log(result)
                            let writeToFile = fs.appendFile('./results/results.txt', result, (err) => {
                             console.log("ERROR: ", err)
