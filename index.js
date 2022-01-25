@@ -29,7 +29,7 @@
                             let decoded = buff.toString('ascii')
                       
                            let resultArr = decoded.match(regex)
-                           let result = resultArr.join(' \n') + `\n skillcrucial-react-redux-boilerplate \n` //change to ${repos[i]}
+                           let result = resultArr.join(' \n') + `\n ${repos[i]} \n` //change to ${repos[i]}
                            console.log(result)
                            let writeToFile = fs.appendFile('./results/results.txt', result, (err) => {
                             console.log("ERROR: ", err)
