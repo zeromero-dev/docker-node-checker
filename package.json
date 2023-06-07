@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "axios": "^0.24.0"
-  }
+  },
+  "name": "clear",
+  "description": "Docker-node-checker is a Node.js script that allows you to scan through user's repository and search for node version in dockerfile.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeromero-dev/docker-node-checker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zeromero-dev/docker-node-checker/issues"
+  },
+  "homepage": "https://github.com/zeromero-dev/docker-node-checker#readme"
 }
